@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get in Touch</title>
+  <link
+            rel="shortcut icon"
+            href="./assets/logo.png"
+            type="image/x-icon"
+        />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      color:#333;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      margin-bottom: 15px;
+      font-family: 'Times New Roman', Times, serif;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s;
+    }
+    input:focus, textarea:focus {
+      border-color: #000;
+      outline: none;
+    }
+    button {
+      font-family: 'Times New Roman', Times, serif;
+      padding: 10px 15px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    button:hover {
+      background-color: #fff;
+      color:#000;
+    }
+    .error {
+      color: #d9534f;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GET IN TOUCH</h1>
+    <form id="contactForm">
+      <label for="name">NAME</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+      <span class="error" id="nameError"></span>
+
+      <label for="email">E-MAIL</label>
+      <input type="email" id="email" name="email" placeholder="Your email" required>
+      <span class="error" id="emailError"></span>
+
+      <label for="subject">SUBJECT</label>
+      <input type="text" id="subject" name="subject" placeholder="Subject">
+
+      <label for="message">MESSAGE</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+      <span class="error" id="messageError"></span>
+
+      <button type="submit">SUBMIT</button>
+    </form>
+  </div>
+  <script>
+    emailjs.init("AJgCaTfK1sSJtvHdN");
+  </script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      emailjs.sendForm('service_hw1iwnr', 'template_vy1c57k', this)
+        .then(function() {
+          alert('Your message has been sent!');
+          document.getElementById('contactForm').reset();
+        }, function(error) {
+          alert('Failed to send message. Please try again.');
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>  
+</html>
